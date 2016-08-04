@@ -44,6 +44,7 @@ defmodule Geonames do
     EP.Cities,
     EP.Contains,
     EP.CountryCode,
+    EP.CountryInfo,
     EP.CountrySubdivision,
     EP.Earthquakes,
     EP.FindNearby,

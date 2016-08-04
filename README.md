@@ -78,6 +78,7 @@ name maps directly the API provided name for simplicity.
   Geonames.cities/1
   Geonames.contains/1
   Geonames.country_code/1
+  Geonames.country_info/1
   Geonames.country_subdivision/1
   Geonames.earthquakes/1
   Geonames.find_nearby/1
