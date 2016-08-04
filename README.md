@@ -119,3 +119,20 @@ can use the following function
 
 Please note that this function assumes that the response will be
 JSON. Using the XML endpoints of the API WILL NOT WORK.
+
+
+## Todo
+
+- Add support for the premium API plans
+- Write tests
+
+## Issues and contributions
+
+Please feel free to use the issue tracker for bugs and requests, but for bugs
+please provide as much information as possible.
+
+Pull requests are welcomed.
+
+## License
+
+GeoNames-Elixir is Licensed under MIT.
