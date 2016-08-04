@@ -14,22 +14,10 @@ defmodule Geonames.Mixfile do
      package: package]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
     [applications: [:logger, :poison, :httpoison]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
     [
       { :poison, "~> 2.0" },
@@ -50,12 +38,6 @@ defmodule Geonames.Mixfile do
       licenses: ["MIT"],
       links: %{ "GitHub" => "https://github.com/pareeohnos/geonames-elixir"},
       files: ~w(mix.exs README.md lib)
-    ]
-  end
-
-  defp docs do
-    [
-
     ]
   end
 
