@@ -1,4 +1,39 @@
 defmodule Geonames do
+  @moduledoc """
+  Geonames-Elixir is a simple wrapper around the API provided
+  by geonames.org. All interaction with the API is provied by
+  this module via easy to use functions.
+
+  Each API endpoint maps to a single function, all of which
+  requiring a map containing the parameters of the request.
+  If no arguments are required, then the hash can be omited
+  as it will default to %{}
+
+  ## Examples
+
+  Below you will find a few examples on how to query the
+  geonames API.
+
+  ###### General search
+
+      Geonames.search %{ q: "London" }
+      Geonames.search %{ q: "London, United Kingdom" }
+
+  ###### Find cities in a bounding box
+
+      Geonames.cities %{ north: 44.1, south: -9.9, east: -22.4, west: 55.2 }
+
+  ###### Find earthquakes in a bounding box
+
+      Geonames.earthquakes %{ north: 44.1, south: -9.9, east: -22.4, west: 55.2, date: "2015-05-30" }
+
+
+  As you can see, the interface is very simple to use. All
+  functions will return a map in the exact format returned
+  by the API. Currently, Geonames-Elixir will make no attempt
+  to format this response in any way.
+
+  """
 
   alias Geonames.Endpoints, as: EP
   alias Geonames.Helpers
@@ -57,7 +92,7 @@ defmodule Geonames do
 
     """
     @spec unquote(endpoint.function_name)(map) :: { Atom.t, map }
-    def unquote(endpoint.function_name)(args) do
+    def unquote(endpoint.function_name)(args \\ %{}) do
       url_params = unquote(endpoint).url_arguments(args)
       case Helpers.required_parameters_provided?(unquote(endpoint).required_url_parameters, url_params) do
         true ->
