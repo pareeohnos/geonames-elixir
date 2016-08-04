@@ -1,4 +1,9 @@
 defmodule Geonames.Helpers do
+  @moduledoc """
+  The Helpers module provides a simple set of functions
+  used by Geonames-Elixir. There is no real need to use
+  any of the functions defined here directly.
+  """
 
   @base_url Application.get_env(:geonames, :base_url, "api.geonames.org/")
 
