@@ -7,7 +7,11 @@ defmodule Geonames.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps,
+
+     name: "GeoNames-Elixir",
+     description: description,
+     package: package]
   end
 
   # Configuration for the OTP application
@@ -32,4 +36,26 @@ defmodule Geonames.Mixfile do
       { :httpoison, "~> 0.9.0" }
     ]
   end
+
+  defp description do
+    """
+    A simple wrapper around the geonames.org JSON API
+    """
+  end
+
+  defp package do
+    [
+      maintainers: ["Adrian Hooper"],
+      licenses: ["MIT"],
+      links: %{ "GitHub" => "https://github.com/pareeohnos/geonames-elixir"},
+      files: ~w(mix.exs README.md lib)
+    ]
+  end
+
+  defp docs do
+    [
+
+    ]
+  end
+
 end
