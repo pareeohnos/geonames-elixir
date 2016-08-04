@@ -1,4 +1,5 @@
 defmodule Geonames.Endpoints.GTOPO30 do
+  @moduledoc false
   @behaviour Geonames.Endpoint
 
   @default_arguments %{

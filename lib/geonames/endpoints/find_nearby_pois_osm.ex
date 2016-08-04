@@ -1,4 +1,5 @@
 defmodule Geonames.Endpoints.FindNearbyPOIsOSM do
+  @moduledoc false
   @behaviour Geonames.Endpoint
 
   @default_arguments %{

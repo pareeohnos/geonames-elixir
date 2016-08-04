@@ -1,4 +1,5 @@
 defmodule Geonames.Endpoints.PostalCodeLookup do
+  @moduledoc false
   @behaviour Geonames.Endpoint
 
   @default_arguments %{

@@ -1,4 +1,5 @@
 defmodule Geonames.Endpoints.SRTM1 do
+  @moduledoc false
   @behaviour Geonames.Endpoint
 
   @default_arguments %{
