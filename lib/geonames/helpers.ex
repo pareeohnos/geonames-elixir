@@ -29,9 +29,14 @@ defmodule Geonames.Helpers do
   """
   def build_url_string(endpoint, parameters) do
     encoded_params =
-      parameters
-      |> Map.merge(user_configuration)
-      |> Enum.map(fn { k, v } -> (if is_nil(v), do: nil, else: "#{k}=#{v}") end)
+      user_configuration
+      |> Map.merge(parameters)
+      |> Enum.map(fn
+        {_,nil}                    -> nil
+        {k,v} when is_binary(v)    -> "#{k}=#{v}"
+        {k,arr} when is_list(arr)  -> Enum.map(arr, &"#{k}=#{&1}")
+      end)
+      |> List.flatten
       |> Enum.filter(fn(k) -> !is_nil(k) end)
       |> Enum.join("&")
       |> URI.encode
