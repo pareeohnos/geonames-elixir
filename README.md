@@ -11,7 +11,7 @@ To install GeoNames-Elixir, follow these instructions:
 
   ```elixir
   def deps do
-    [{ :geonames, "~> 0.0.1" }]
+    [{ :geonames, "~> 1.0.1" }]
   end
   ```
 
