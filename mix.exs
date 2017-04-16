@@ -20,8 +20,8 @@ defmodule Geonames.Mixfile do
 
   defp deps do
     [
-      { :poison, "~> 2.0" },
-      { :httpoison, "~> 0.9.0" },
+      { :poison, "~> 3.0" },
+      { :httpoison, "~> 0.11.0" },
       { :ex_doc, "~> 0.12", only: :dev }
     ]
   end
