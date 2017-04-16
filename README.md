@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pareeohnos/geonames-elixir.svg?branch=master)](https://travis-ci.org/pareeohnos/geonames-elixir)
+
 # Geonames
 
 Geonames-Elixir is a simple wrapper around the Geonames.org API. It aims to provide
