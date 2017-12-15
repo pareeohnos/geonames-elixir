@@ -34,6 +34,9 @@ defmodule Geonames.Helpers do
       |> Enum.map(fn
         {_,nil}                    -> nil
         {k,v} when is_binary(v)    -> "#{k}=#{v}"
+        {k,v} when is_float(v)    -> "#{k}=#{v}"
+        {k,v} when is_boolean(v)    -> "#{k}=#{v}"
+        {k,v} when is_integer(v)    -> "#{k}=#{v}"
         {k,arr} when is_list(arr)  -> Enum.map(arr, &"#{k}=#{&1}")
       end)
       |> List.flatten
