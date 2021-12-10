@@ -9,7 +9,7 @@ simple access to all available API endpoints that return a JSON result.
 
 To install GeoNames-Elixir, follow these instructions:
 
-- Add to your list of dependencies in `mix.exs` geonames-elixir and a JSON decoder library (Jason, Poison or another supported `decode!/1` method):
+- Add to your list of dependencies in `mix.exs` geonames-elixir and a JSON decoder library (Jason, Poison or another which supports `decode!/1` call):
 
   ```elixir
   def deps do
