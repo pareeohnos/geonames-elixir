@@ -5,20 +5,14 @@ defmodule Geonames.Helpers do
   any of the functions defined here directly.
   """
 
-  @base_url Application.get_env(:geonames, :base_url, "api.geonames.org/")
+  @default_base_url "api.geonames.org"
 
   @doc """
   Determines whether or not all of the required
   request parameters have been set
   """
-  def required_parameters_provided?(required, opts) do
-    invalid =
-      required
-      |> Enum.map(fn(k) -> opts[k] end)
-      |> Enum.member?(nil)
-
-    !invalid
-  end
+  def required_parameters_provided?(required, opts),
+    do: Enum.all?(required, &Map.get(opts, &1))
 
   @doc """
   For each request to the GeoNames API, the
@@ -29,30 +23,35 @@ defmodule Geonames.Helpers do
   """
   def build_url_string(endpoint, parameters) do
     encoded_params =
-      user_configuration
+      user_configuration()
       |> Map.merge(parameters)
       |> Enum.map(fn
-        {_,nil}                    -> nil
-        {k,v} when is_binary(v)    -> "#{k}=#{v}"
-        {k,v} when is_float(v)    -> "#{k}=#{v}"
-        {k,v} when is_boolean(v)    -> "#{k}=#{v}"
-        {k,v} when is_integer(v)    -> "#{k}=#{v}"
-        {k,arr} when is_list(arr)  -> Enum.map(arr, &"#{k}=#{&1}")
+        {_, nil} -> nil
+        {k, arr} when is_list(arr) -> Enum.map(arr, &"#{k}=#{&1}")
+        {k, v} -> "#{k}=#{v}"
       end)
-      |> List.flatten
-      |> Enum.filter(fn(k) -> !is_nil(k) end)
+      |> List.flatten()
+      |> Enum.reject(fn k -> is_nil(k) end)
       |> Enum.join("&")
-      |> URI.encode
+      |> URI.encode()
 
-    @base_url <> endpoint <> "?" <> encoded_params
+    [base_url(), "/", endpoint, "?", encoded_params] |> Enum.join()
   end
-
 
   defp user_configuration do
     %{
       username: Application.get_env(:geonames, :username) || System.get_env("GEONAMES_USERNAME"),
-      language: Application.get_env(:geonames, :language, System.get_env("GEONAMES_LANGUAGE") || "en")
+      language:
+        Application.get_env(:geonames, :language) || System.get_env("GEONAMES_LANGUAGE") || "en"
     }
   end
 
+  defp base_url do
+    url =
+      Application.get_env(:geonames, :base_url) ||
+        System.get_env("GEONAMES_BASE_URL") ||
+        @default_base_url
+
+    String.trim_trailing(url, "/")
+  end
 end

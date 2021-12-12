@@ -9,12 +9,20 @@ simple access to all available API endpoints that return a JSON result.
 
 To install GeoNames-Elixir, follow these instructions:
 
-- Add geonames-elixir to your list of dependencies in `mix.exs`:
+- Add to your list of dependencies in `mix.exs` geonames-elixir and a JSON decoder library (Jason, Poison or another which supports `decode!/1` call):
 
   ```elixir
   def deps do
-    [{ :geonames, "~> 1.0.2" }]
+    [
+      { :geonames, "~> 1.0.2" },
+      { :poison, "> 3.0.0" }
+    ]
   end
+  ```
+- (optional) Add to your config a name of the chosen library; if none is set then Poison will be used:
+
+  ```elixir
+    config :geonames, json_library: Jason
   ```
 
 - Ensure geonames is started before your application:
@@ -44,13 +52,15 @@ documentation.
 ## Configuration
 
 Before you can use GeoNames-Elixir, you must configure it with your
-username, and preferred language. This can be done by simply adding
-the following to your application configuration
+username, base URL (for example, to use with premium plans or your own service) 
+and preferred language. This can be done by simply adding the following 
+to your application configuration
 
   ```elixir
   config :geonames,
     username: "demo",
-    language: "en"
+    language: "en",
+    base_url: "https://secure.geonames.net"
   ```
 
 Alternatively, you can set these with the environment variables
@@ -58,6 +68,7 @@ Alternatively, you can set these with the environment variables
   ```
   GEONAMES_USERNAME=demo
   GEONAMES_LANGUAGE=en
+  GEONAMES_BASE_URL=https://secure.geonames.net
   ```
 
 Note that the language is not required, and will default to `en`
@@ -67,6 +78,8 @@ Please also not the that language may not effect every API call.
 It will be supplied for all, however the geonames.org documentation
 does not specify its usage in every endpoint, so there are no
 guarantees that your preferred language will be effective.
+
+If `:base_url` is not specified then `"api.geonames.org"` will be used by default.
 
 
 ## Available functions
