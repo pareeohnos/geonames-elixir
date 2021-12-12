@@ -12,7 +12,7 @@ defmodule Geonames.Helpers do
   request parameters have been set
   """
   def required_parameters_provided?(required, opts),
-    do: Enum.all?(required, &Map.get(opts, &1))
+    do: Enum.all?(required, fn key -> !is_nil(Map.get(opts, key)) end)
 
   @doc """
   For each request to the GeoNames API, the
