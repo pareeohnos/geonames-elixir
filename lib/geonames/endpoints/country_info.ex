@@ -3,7 +3,7 @@ defmodule Geonames.Endpoints.CountryInfo do
   @behaviour Geonames.Endpoint
 
   @default_arguments %{
-    country: nil,
+    country: nil
   }
 
   def endpoint, do: "countryInfoJSON"
@@ -14,5 +14,4 @@ defmodule Geonames.Endpoints.CountryInfo do
   def url_arguments(provided_arguments) do
     Map.merge(@default_arguments, provided_arguments)
   end
-
 end

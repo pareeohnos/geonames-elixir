@@ -2,8 +2,7 @@ defmodule Geonames.Endpoints.PostalCodeCountryInfo do
   @moduledoc false
   @behaviour Geonames.Endpoint
 
-  @default_arguments %{
-  }
+  @default_arguments %{}
 
   def endpoint, do: "postalCodeCountryInfoJSON"
   def available_url_parameters, do: []
@@ -13,5 +12,4 @@ defmodule Geonames.Endpoints.PostalCodeCountryInfo do
   def url_arguments(provided_arguments) do
     Map.merge(@default_arguments, provided_arguments)
   end
-
 end

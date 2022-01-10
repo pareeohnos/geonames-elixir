@@ -88,7 +88,12 @@ defmodule Geonames do
     Each request parameter should be supplied in a map. For example,
 
         Geonames.#{endpoint.function_name}(%{
-          #{Enum.join(Enum.map(endpoint.available_url_parameters, fn e -> "#{to_string(e)}: \"val\"" end), ",\n      ")}
+          #{
+      Enum.join(
+        Enum.map(endpoint.available_url_parameters, fn e -> "#{to_string(e)}: \"val\"" end),
+        ",\n      "
+      )
+    }
         })
 
     """

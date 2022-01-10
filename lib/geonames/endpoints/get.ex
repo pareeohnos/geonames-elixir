@@ -15,5 +15,4 @@ defmodule Geonames.Endpoints.Get do
   def url_arguments(provided_arguments) do
     Map.merge(@default_arguments, provided_arguments)
   end
-
 end
