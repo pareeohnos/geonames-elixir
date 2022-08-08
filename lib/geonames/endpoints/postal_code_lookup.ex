@@ -9,7 +9,7 @@ defmodule Geonames.Endpoints.PostalCodeLookup do
   }
 
   def endpoint, do: "postalCodeLookupJSON"
-  def available_url_parameters, do: [:postcalcode, :country, :maxRows]
+  def available_url_parameters, do: [:postalcode, :country, :maxRows]
   def required_url_parameters, do: [:postalcode, :country]
   def function_name, do: :postal_code_lookup
 
